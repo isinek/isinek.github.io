@@ -1,0 +1,29 @@
+{
+        "users": [
+                {
+                        "id": "5ab8fb7bf04e7",
+                        "name": "Sinek"
+                },
+                {
+                        "id": "5ab8fa6fe3daf",
+                        "name": "Supreme Loudspeaker Stajp"
+                }
+        ],
+        "timeSlots": [
+                {
+                        "id": "5ab8e01a2954f",
+                        "label": "11:03",
+                        "participants": [
+                                "5ab8fa6fe3daf",
+                                "5ab8fb7bf04e7"
+                        ]
+                },
+                {
+                        "id": "5ab8e01f11297",
+                        "label": "12:17",
+                        "participants": [
+                        ]
+                }
+        ],
+        "comments": []
+}
