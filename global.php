@@ -15,10 +15,10 @@
                 $jsonData = @file_get_contents('json.json');
                 $jsonData = json_decode($jsonData, true);
                 $jsonFile = fopen($jsonFilename, 'w') or die('Unable to open file!');
-                if (flock($file,LOCK_EX))
+                if (flock($jsonFile,LOCK_EX))
                 {
                         fwrite($jsonFile, json_encode($jsonData));
-                        flock($file,LOCK_UN);
+                        flock($jsonFile,LOCK_UN);
                 }
                 fclose($jsonFile);
         }
@@ -42,10 +42,10 @@
                         }
 
                         $jsonFile = fopen($jsonFilename, 'w') or die('Unable to open file!');
-                        if (flock($file,LOCK_EX))
+                        if (flock($jsonFile,LOCK_EX))
                         {
                                 fwrite($jsonFile, json_encode($jsonData));
-                                flock($file,LOCK_UN);
+                                flock($jsonFile,LOCK_UN);
                         }
                         fclose($jsonFile);
                 } elseif (isset($_POST['timeslot'])) {
@@ -81,10 +81,10 @@
                                 usort($jsonData['timeSlots'], 'cmpTimeSlots');
 
                                 $jsonFile = fopen('json.json', 'w') or die('Unable to open file!');
-                                if (flock($file,LOCK_EX))
+                                if (flock($jsonFile,LOCK_EX))
                                 {
                                         fwrite($jsonFile, json_encode($jsonData));
-                                        flock($file,LOCK_UN);
+                                        flock($jsonFile,LOCK_UN);
                                 }
                                 fclose($jsonFile);
                         }
@@ -100,10 +100,10 @@
                         $jsonData['comments'][] = $newComment;
 
                         $jsonFile = fopen($jsonFilename, 'w') or die('Unable to open file!');
-                        if (flock($file,LOCK_EX))
+                        if (flock($jsonFile,LOCK_EX))
                         {
                                 fwrite($jsonFile, json_encode($jsonData));
-                                flock($file,LOCK_UN);
+                                flock($jsonFile,LOCK_UN);
                         }
                         fclose($jsonFile);
 
@@ -121,15 +121,15 @@
                 usort($jsonData['users'], 'cmpUsers');
 
                 $jsonFile = fopen($jsonFilename, 'w') or die('Unable to open file!');
-                if (flock($file,LOCK_EX))
+                if (flock($jsonFile,LOCK_EX))
                 {
                         fwrite($jsonFile, json_encode($jsonData));
-                        flock($file,LOCK_UN);
+                        flock($jsonFile,LOCK_UN);
                 }
                 fclose($jsonFile);
 
-                $jsonData = file_get_contents('json.json');
-                $jsonData = json_decode($jsonData, true);
+                // $jsonData = file_get_contents('json.json');
+                // $jsonData = json_decode($jsonData, true);
 
                 // $jsonData['users'][] = $newUser;
 
@@ -139,7 +139,7 @@
                 // fwrite($jsonFile, json_encode($jsonData));
                 // fclose($jsonFile);
 
-                setcookie('userID', $newUser['id'], 28800);
+                setcookie('userID', $newUser['id'], time()+28800);
 
                 header('Location: /');
         }
